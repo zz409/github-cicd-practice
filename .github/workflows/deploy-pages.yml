@@ -1,5 +1,10 @@
 name: CI/CD 自动校验并部署到 GitHub Pages
 
+permissions:
+  contents: write
+  pages: write
+  id-token: write
+
 on:
   push:
     branches: [ main ]
