@@ -1,0 +1,30 @@
+name: CI/CD 自动校验并部署到 GitHub Pages
+
+on:
+  push:
+    branches: [ main ]
+
+jobs:
+  deploy-to-pages:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: 拉取仓库代码
+        uses: actions/checkout@v4
+
+      - name: 校验静态文件是否存在
+        run: |
+          if [ -f "dist/index.html" ]; then
+            echo "✅ dist/index.html 文件存在，校验通过！"
+          else
+            echo "❌ dist/index.html 文件缺失，校验失败！"
+            exit 1
+          fi
+
+      - name: 部署到 GitHub Pages
+        uses: peaceiris/actions-gh-pages@v4
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./dist
+          publish_branch: gh-pages   # ⭐⭐ 关键：指定要发布到 gh-pages
+          force_orphan: true         # 让分支变干净，避免历史冲突
