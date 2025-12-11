@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>CI/CD 练习页面</title>
+    <style>
+        body { text-align: center; margin-top: 50px; font-family: Arial; }
+        h1 { color: #2196F3; }
+    </style>
+</head>
+<body>
+    <h1>GitHub CI/CD 实践成功！</h1>
+    <p>这是通过 GitHub Actions 自动部署的静态页面 🚀</p>
+    <p>提交时间：<span id="time"></span></p>
+    <p>提交姓名：<span>学号姓名</span></p>
+    <script>
+        document.getElementById('time').innerText = new Date().toLocaleString();
+    </script>
+</body>
+</html>
